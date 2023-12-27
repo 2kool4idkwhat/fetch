@@ -1,0 +1,8 @@
+fetch
+*.exe
+bin/
+result
+
+vendor/
+
+.direnv/
