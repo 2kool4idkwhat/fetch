@@ -6,13 +6,13 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
+
+	"github.com/jwalton/gchalk"
 )
 
-// from https://twin.sh/articles/35/how-to-add-colors-to-your-console-terminal-output-in-go
-// also see https://en.wikipedia.org/wiki/ANSI_escape_code
-const Reset = "\033[0m"
-const Green = "\033[92m"
-const Blue = "\033[94m"
+// colors
+var green = gchalk.BrightGreen
+var blue = gchalk.BrightBlue
 
 // flags
 var Lowercase bool
@@ -26,20 +26,19 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		var h strings.Builder
 
-		fmt.Print(Blue, Username(), Reset, "@", Blue, Hostname(), Reset, "\n")
+		fmt.Print(blue(Username()), "@", blue(Hostname()), "\n")
 
-		h.WriteString(Green)
 		if OwO == true {
-			h.WriteString("OwOS")
+			h.WriteString(green("OwOS"))
 		} else {
-			h.WriteString("OS")
+			h.WriteString(green("OS"))
 		}
-		write(&h, Reset, ": ", Distro(), "\n")
+		write(&h, ": ", Distro(), "\n")
 
-		write(&h, Green, "Arch", Reset, ": ", Arch(), "\n")
-		write(&h, Green, "Kernel", Reset, ": ", Kernel(), "\n")
-		write(&h, Green, "Shell", Reset, ": ", Shell(), "\n")
-		write(&h, Green, "DE/WM", Reset, ": ", Desktop())
+		write(&h, green("Arch"), ": ", Arch(), "\n")
+		write(&h, green("Kernel"), ": ", Kernel(), "\n")
+		write(&h, green("Shell"), ": ", Shell(), "\n")
+		write(&h, green("DE/WM"), ": ", Desktop())
 
 		// this probably negates any performance benefits from using
 		// strings.Builder but I'm doing it because I can then just

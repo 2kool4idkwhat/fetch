@@ -21,7 +21,7 @@
           src = ./.;
 
           vendorHash =
-            "sha256-oaxmGX/w5J3+ylXORXnZHwlQzFV8TwarokoDfYNVXhc=";
+            "sha256-i/plyFBSY+3ISU1hti5qwk+vHIXs/uduFvMnmMkqBPQ=";
 
           CGO_ENABLED = 0;
 
