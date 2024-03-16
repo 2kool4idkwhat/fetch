@@ -5,34 +5,34 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
 
     utils.url = "github:numtide/flake-utils";
+
+    gomod2nix = {
+      url = "github:nix-community/gomod2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "utils";
+    };
   };
 
-  outputs = { self, nixpkgs, utils }:
+  outputs = { self, nixpkgs, utils, gomod2nix }:
     utils.lib.eachSystem [
       "x86_64-linux"
       "aarch64-linux"
     ] (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        packages.default = pkgs.buildGoModule {
-          pname = "fetch";
-          version = "latest";
-          src = ./.;
-
-          vendorHash =
-            "sha256-uTRLJlrUPGdPeIX7vDuv86IqMRvutVwJCuUS/KLdpXs=";
-
-          CGO_ENABLED = 0;
-
-          # removes debug info, making the binary smaller
-          ldflags = [ "-s" "-w" ];
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ 
+            gomod2nix.overlays.default 
+          ];
         };
-
-        apps.default = utils.lib.mkApp { drv = self.packages.${system}.default; };
+      in {
+        packages.default = pkgs.callPackage ./package.nix {};
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [ go ];
+          buildInputs = with pkgs; [ 
+            go 
+            gomod2nix.packages.${system}.default
+          ];
         };
 
       });

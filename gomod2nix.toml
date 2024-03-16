@@ -1,0 +1,27 @@
+schema = 3
+
+[mod]
+  [mod."github.com/inconshreveable/mousetrap"]
+    version = "v1.1.0"
+    hash = "sha256-XWlYH0c8IcxAwQTnIi6WYqq44nOKUylSWxWO/vi+8pE="
+  [mod."github.com/joho/godotenv"]
+    version = "v1.5.1"
+    hash = "sha256-kA0osKfsc6Kp+nuGTRJyXZZlJt1D/kuEazKMWYCWcQ8="
+  [mod."github.com/jwalton/gchalk"]
+    version = "v1.3.0"
+    hash = "sha256-4s7d4tlTzo35aplyUFXwTobFPi/crqEogQ5H35EByuw="
+  [mod."github.com/jwalton/go-supportscolor"]
+    version = "v1.2.0"
+    hash = "sha256-X1LpdH+mcZmRvKz2/19yyYCv7fTqRpgO8Nl3Zchfgns="
+  [mod."github.com/spf13/cobra"]
+    version = "v1.8.0"
+    hash = "sha256-oAE+fEaRfZPE541IPWE0GMeBBYgH2DMhtZNxzp7DFlY="
+  [mod."github.com/spf13/pflag"]
+    version = "v1.0.5"
+    hash = "sha256-w9LLYzxxP74WHT4ouBspH/iQZXjuAh2WQCHsuvyEjAw="
+  [mod."golang.org/x/sys"]
+    version = "v0.18.0"
+    hash = "sha256-bIFhfFp7Sj0E1gcE3X3l/jecCfSRLgrkb8f0Yr6tVR0="
+  [mod."golang.org/x/term"]
+    version = "v0.18.0"
+    hash = "sha256-lpze9arFZIhBV8Ht3VZyoiUwqPkeH2IwfXt8M3xljiM="
