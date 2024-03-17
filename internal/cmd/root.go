@@ -28,7 +28,7 @@ var rootCmd = &cobra.Command{
 
 		fmt.Print(blue(Username()), "@", blue(Hostname()), "\n")
 
-		if OwO == true {
+		if OwO {
 			h.WriteString(green("OwOS"))
 		} else {
 			h.WriteString(green("OS"))
@@ -45,11 +45,11 @@ var rootCmd = &cobra.Command{
 		// lowercase/owoify the entire text at once :P
 		text := h.String()
 
-		if Lowercase == true {
+		if Lowercase {
 			text = strings.ToLower(text)
 		}
 
-		if OwO == true {
+		if OwO {
 			text = OwOify(text)
 		}
 

@@ -38,17 +38,17 @@ func Desktop() string {
 
 	// see https://www.freedesktop.org/software/systemd/man/latest/pam_systemd.html#desktop=
 	desktop, exists := os.LookupEnv("XDG_SESSION_DESKTOP")
-	if exists == true {
+	if exists {
 		return desktop
 	}
 
 	// if $XDG_SESSION_DESKTOP doesn't exist
 	fallback, exists := os.LookupEnv("DESKTOP_SESSION")
-	if exists != true {
-		return "unknown"
+	if exists {
+		return fallback
 	}
 
-	return fallback
+	return "unknown"
 }
 
 func Distro() string {
@@ -69,7 +69,7 @@ func Distro() string {
 		return "Linux"
 	}
 
-	if OwO == true {
+	if OwO {
 		switch distro {
 		case "NixOS":
 			return "NyixOwOS"
@@ -104,7 +104,7 @@ func Distro() string {
 // returns the user's shell
 func Shell() string {
 	shellenv, exists := os.LookupEnv("SHELL")
-	if exists != true {
+	if !exists {
 		return "unknown"
 	}
 
