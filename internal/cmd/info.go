@@ -5,9 +5,14 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 	"os/user"
 )
+
+func usernameAndHostname() string {
+	return fmt.Sprintf("%s@%s", blue(Username()), blue(Hostname()))
+}
 
 // returns the user's username
 func Username() string {

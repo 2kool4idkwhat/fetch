@@ -11,60 +11,60 @@ import (
 )
 
 // colors
+
 var green = gchalk.BrightGreen
 var blue = gchalk.BrightBlue
 
 // flags
-var Lowercase bool
+
+var lowercase bool
 var OwO bool
+var noAscii bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "fetch",
-	Short: "Yet another neofetch clone",
+	Short: "Yet another minimal system info *fetch ",
 
 	Run: func(cmd *cobra.Command, args []string) {
-		var h strings.Builder
-
-		fmt.Print(blue(Username()), "@", blue(Hostname()), "\n")
-
-		if OwO {
-			h.WriteString(green("OwOS"))
-		} else {
-			h.WriteString(green("OS"))
-		}
-		write(&h, ": ", Distro(), "\n")
-
-		write(&h, green("Arch"), ": ", Arch(), "\n")
-		write(&h, green("Kernel"), ": ", Kernel(), "\n")
-		write(&h, green("Shell"), ": ", Shell(), "\n")
-		write(&h, green("DE/WM"), ": ", Desktop())
-
-		// this probably negates any performance benefits from using
-		// strings.Builder but I'm doing it because I can then just
-		// lowercase/owoify the entire text at once :P
-		text := h.String()
-
-		if Lowercase {
-			text = strings.ToLower(text)
-		}
-
-		if OwO {
-			text = OwOify(text)
-		}
-
-		fmt.Println(text)
+		format()
 	},
 }
 
-// convenient way to add multiple strings to a
-// strings.Builder at once
-func write(b *strings.Builder, text ...string) {
+const cat = `
+            %s
+ ╱|、       %s
+(˚ˎ 。7     %s
+ |、˜〵     %s    
+ じしˍ,)ノ  %s
+            %s
+`
 
-	for _, t := range text {
-		b.WriteString(t)
+func format() {
+	var sb strings.Builder
+
+	switch noAscii {
+	case false:
+		text := fmt.Sprintf(cat,
+			usernameAndHostname(),
+			distroLine(), archLine(), kernelLine(), shellLine(), desktopLine())
+		sb.WriteString(text)
+	case true:
+		sb.WriteString(usernameAndHostname() + "\n")
+		sb.WriteString(distroLine() + "\n")
+		sb.WriteString(archLine() + "\n")
+		sb.WriteString(kernelLine() + "\n")
+		sb.WriteString(shellLine() + "\n")
+		sb.WriteString(desktopLine())
 	}
 
+	switch lowercase {
+	case true:
+		text := strings.ToLower(sb.String())
+		fmt.Println(text)
+	case false:
+		fmt.Println(sb.String())
+	}
 }
 
 func OwOify(text string) string {
@@ -85,6 +85,11 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.PersistentFlags().BoolVarP(&Lowercase, "lowercase", "l", false, "makes the text lowercase")
-	rootCmd.PersistentFlags().BoolVarP(&OwO, "owo", "o", false, "makes the text mowe owo")
+	rootCmd.PersistentFlags().BoolVarP(&lowercase, "lowercase", "l", false,
+		"makes the text lowercase")
+	rootCmd.PersistentFlags().BoolVarP(&OwO, "owo", "o", false,
+		"makes the text mowe owo")
+	rootCmd.PersistentFlags().BoolVarP(&noAscii, "no-ascii", "n", false,
+		"whether to not show the ascii art cat",
+	)
 }

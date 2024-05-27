@@ -3,6 +3,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 	"strings"
 
@@ -21,6 +22,14 @@ func Kernel() string {
 	return strings.TrimSpace(string(version))
 }
 
+func kernelLine() string {
+	if OwO {
+		return fmt.Sprintf("%s: %s", green("Kewnew"), Kernel())
+	}
+
+	return fmt.Sprintf("%s: %s", green("Kernel"), Kernel())
+}
+
 // returns the cpu arch
 func Arch() string {
 
@@ -30,6 +39,14 @@ func Arch() string {
 	}
 
 	return strings.TrimSpace(string(arch))
+}
+
+func archLine() string {
+	if OwO {
+		return fmt.Sprintf("%s: %s", green("CPUwU Awch"), Arch())
+	}
+
+	return fmt.Sprintf("%s: %s", green("CPU Arch"), Arch())
 }
 
 // returns de/wm/compositor
@@ -49,6 +66,11 @@ func Desktop() string {
 	}
 
 	return "unknown"
+}
+
+func desktopLine() string {
+
+	return fmt.Sprintf("%s: %s", green("DE/WM"), Desktop())
 }
 
 func Distro() string {
@@ -101,6 +123,14 @@ func Distro() string {
 	return distro
 }
 
+func distroLine() string {
+	if OwO {
+		return fmt.Sprintf("%s: %s", green("OwOS"), Distro())
+	}
+
+	return fmt.Sprintf("%s: %s", green("OS"), Distro())
+}
+
 // returns the user's shell
 func Shell() string {
 	shellenv, exists := os.LookupEnv("SHELL")
@@ -116,4 +146,12 @@ func Shell() string {
 
 	// and now we just return the last item from the slice
 	return shell[len(shell)-1]
+}
+
+func shellLine() string {
+	if OwO {
+		return fmt.Sprintf("%s: %s", green("Sheww"), Shell())
+	}
+
+	return fmt.Sprintf("%s: %s", green("Shell"), Shell())
 }
