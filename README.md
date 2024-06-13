@@ -5,6 +5,12 @@ Inspired by all the other \*fetches, (neofetch, hyfetch, screenfetch, pridefetch
 
 NOTE: it currently only works on Linux
 
+If you have Nix installed, you can try out nekofetch by running this command:
+
+```sh
+nix run github:2kool4idkwhat/nekofetch
+```
+
 Features
 --------
 
@@ -21,6 +27,12 @@ If you have Go installed, you can just clone this repo and run `go install`
 git clone "https://github.com/2kool4idkwhat/nekofetch"
 cd nekofetch
 go install
+```
+
+If you have Nix installed, you can just run this:
+
+```sh
+nix profile install github:2kool4idkwhat/nekofetch
 ```
 
 Usage
