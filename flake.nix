@@ -1,5 +1,5 @@
 {
-  description = "Yet another neofetch clone";
+  description = "Yet another minimal system info *fetch";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";

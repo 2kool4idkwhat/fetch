@@ -1,8 +1,8 @@
 fetch
+nekofetch
 *.exe
-bin/
-result
 
-vendor/
+result*
+.direnv
 
-.direnv/
+vendor

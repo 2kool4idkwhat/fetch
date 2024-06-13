@@ -1,2 +1,2 @@
 build:
-	go build -o bin/fetch
+	go build -ldflags "-s -w" -v

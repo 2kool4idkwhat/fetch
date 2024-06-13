@@ -23,7 +23,7 @@ var noAscii bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "fetch",
+	Use:   "nekofetch",
 	Short: "Yet another minimal system info *fetch ",
 
 	Run: func(cmd *cobra.Command, args []string) {

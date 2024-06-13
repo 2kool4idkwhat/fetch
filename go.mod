@@ -1,4 +1,4 @@
-module github.com/2kool4idkwhat/fetch
+module github.com/2kool4idkwhat/nekofetch
 
 go 1.22
 

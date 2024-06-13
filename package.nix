@@ -1,7 +1,7 @@
 {buildGoApplication, ...}:
 
 buildGoApplication {
-  pname = "fetch";
+  pname = "nekofetch";
   version = "latest";
   src = ./.;
   modules = ./gomod2nix.toml;
