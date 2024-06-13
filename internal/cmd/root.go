@@ -90,6 +90,6 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&OwO, "owo", "o", false,
 		"makes the text mowe owo")
 	rootCmd.PersistentFlags().BoolVarP(&noAscii, "no-ascii", "n", false,
-		"whether to not show the ascii art cat",
+		"hides the ascii art cat",
 	)
 }
